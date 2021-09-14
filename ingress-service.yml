@@ -10,15 +10,15 @@ spec:
         paths:
           - path: /
             pathType: Prefix
-            backend:
+            frontend:
               service:
-                name: backend-service
+                name: frontend
                 port:
                   number: 3000
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: frontend-service
+                name: backend
                 port:
                   number: 8080
