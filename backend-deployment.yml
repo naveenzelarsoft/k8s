@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: naveen5035/backend:v2
+          image: naveen5035/backend:v3
           ports:
             - containerPort: 8080
           env:
@@ -27,4 +27,4 @@ spec:
             - name: PGDATABASE
               value: loizenaidb
             - name: PGPASSWORD
-              value: PGPASSWORD
+              value: 123
