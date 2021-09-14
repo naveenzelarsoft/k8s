@@ -25,4 +25,4 @@ spec:
             - name: PGDATABASE
               value: loizenaidb
             - name: PGPASSWORD
-              value: 123
+              value: "123"
