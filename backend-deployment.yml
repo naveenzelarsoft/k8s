@@ -21,7 +21,7 @@ spec:
             - name: username
               value: postgres
             - name: host
-              value: *
+              value: postgres-service
             - name: database
               value: loizenaidb
             - name: password
