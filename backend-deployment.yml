@@ -25,6 +25,4 @@ spec:
             - name: database
               value: loizenaidb
             - name: password
-              value: "123"
-            - name: dialect
-              value: postgres
+              value: "12345"
