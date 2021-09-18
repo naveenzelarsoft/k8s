@@ -17,12 +17,12 @@ spec:
           image: naveen5035/backend:v4
           ports:
             - containerPort: 8080
-          env:
-            - name: username
-              value: postgres
-            - name: host
-              value: postgres-service
-            - name: database
-              value: loizenaidb
-            - name: password
-              value: "123"
+#          env:
+#            - name: username
+#              value: postgres
+#            - name: host
+#              value: postgres-service
+#            - name: database
+#              value: loizenaidb
+#            - name: password
+#              value: "123"
