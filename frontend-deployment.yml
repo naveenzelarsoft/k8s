@@ -15,7 +15,10 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: naveen5035/frontend:v4
+          image: naveen5035/frontend:v5
           stdin: true
           ports:
             - containerPort: 3000
+          env:
+            - name: BACKEND_URL
+              value: http://backend-service:8080

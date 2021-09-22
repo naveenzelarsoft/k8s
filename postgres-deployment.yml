@@ -21,6 +21,6 @@ spec:
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_PASSWORD
-              value: "123"
+              value: Postgres
             - name: POSTGRES_DB
               value: loizenaidb
