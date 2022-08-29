@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: naveen5035/backend:v5
+          image: naveen5035/backend:v9
           ports:
             - containerPort: 8080
           env:
@@ -102,7 +102,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: naveen5035/frontend:v5
+          image: naveen5035/frontend:v9
           stdin: true
           ports:
             - containerPort: 3000
