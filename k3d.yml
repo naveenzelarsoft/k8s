@@ -1,0 +1,10 @@
+kind: Simple
+apiVersion: k3d.io/v1alpha2
+name: k3d-avk
+image: rancher/k3s:v1.21.3-k3s1
+servers: 1
+agents: 2
+ports:
+  - port: 3000:80
+    nodeFilters:
+      - loadbalancer
