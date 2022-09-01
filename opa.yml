@@ -94,6 +94,16 @@ spec:
       labels:
         app: frontend
     spec:
+      initContainers:
+        - name: proxy-init
+          image: "openpolicyagent/proxy_init:v5"
+          args: ["-p", "8000", "-o", "8001", "-u", "1111"]
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
+            runAsNonRoot: false
+            runAsUser: 0
       containers:
         - name: frontend
           image: naveen5035/frontend:v9
@@ -103,6 +113,49 @@ spec:
           env:
             - name: BACKEND_URL
               value: http://backend-service:8080
+        - name: envoy
+          image: "envoyproxy/envoy:v1.21.2"
+          volumeMounts:
+          - readOnly: true
+            mountPath: /config
+            name: envoy-config-vol
+          - readOnly: false
+            mountPath: /run/opa/sockets
+            name: opa-socket
+          args:
+          - "envoy"
+          - "--config-path"
+          - "/config/envoy.yaml"
+          env:
+          - name: ENVOY_UID
+            value: "1111"
+        - name: opa
+          image: "openpolicyagent/opa:0.42.2-envoy-rootless"
+          securityContext:
+            runAsUser: 1111
+          volumeMounts:
+          - readOnly: true
+            mountPath: /config
+            name: opa-config-vol
+          - readOnly: false
+            mountPath: /run/opa/sockets
+            name: opa-socket
+          args:
+          - "run"
+          - "--server"
+          - "--addr=http://127.0.0.1:8181"
+          - "--config-file=/config/conf.yaml"
+          - "--authorization=basic"
+      env:
+      volumes:
+      - name: opa-config-vol
+        configMap:
+          name: opa-envoy-config
+      - name: envoy-config-vol
+        configMap:
+          name: envoy-config
+      - name: opa-socket
+        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
